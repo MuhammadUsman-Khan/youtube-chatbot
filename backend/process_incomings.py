@@ -44,18 +44,28 @@ def chat_with_gemini(user_query, df_path="embeddings.joblib", top_results=5):
     context = "\n".join(
         [f"[{r['start']} - {r['end']}] {r['text']}" for _, r in selected.iterrows()]
     )
-
     prompt = f"""
-Answer the user's question using only the transcript data below.
-If an answer cannot be found directly, say: 
-"I couldn't find that information in the provided videos."
+    You are an AI assistant trained on YouTube video transcripts provided below.
+    Use ONLY this transcript data to respond accurately.
 
-Context:
-{context}
+    If the user asks a question:
+    - Give a clear and precise answer using relevant parts of the transcripts.
+    - Mention the video title and time range (if available).
 
-Question:
-{user_query}
-"""
+    If the user mentions a topic or asks to summarize:
+    - Identify the relevant video(s) or section(s) for that topic.
+    - Provide a concise and insightful summary of that topic or entire video.
+    - Mention which video(s) the summary is based on.
+
+    If the requested information or topic cannot be found, respond with:
+    "I couldn't find that information in the provided videos."
+
+    Context (video transcripts and metadata):
+    {context}
+
+    User Query:
+    {user_query}
+    """
 
     response = inference(prompt)
     return response

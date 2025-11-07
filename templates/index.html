@@ -2,41 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>🤖 Build & Chat with Your AI</title>
+  <title>YouTube Chatbot</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h1>🤖 Build Your AI Chatbot</h1>
 
-    <div id="setup-section">
-      <input id="chatbot_name" placeholder="Enter chatbot name...">
+  <!-- 🌌 Landing Page -->
+  <section id="landing-page" class="page active">
+    <canvas id="aurora-bg"></canvas>
+    <div class="landing-content">
+      <h1 class="glow-text">🤖 YouTube Chatbot</h1>
+      <p class="subtitle">Train an AI chatbot on YouTube videos and chat with it, all in one sleek interface.</p>
+      <button id="get-started" class="neon-btn">Get Started</button>
+    </div>
+  </section>
+
+  <!-- ⚙️ Training Page -->
+  <section id="train-page" class="page hidden">
+    <div class="container glass fade-in">
+      <h1>🚀 Train Your Chatbot</h1>
+      <input id="chatbot_name" placeholder="Enter chatbot name..." class="input-field">
       <div id="video_inputs">
         <div class="video-group">
-          <input placeholder="YouTube URL">
-          <input placeholder="Video Name">
+          <input placeholder="YouTube URL" class="input-field">
+          <input placeholder="Video Name" class="input-field">
         </div>
       </div>
-      <button id="add_video">+ Add More</button>
-      <button id="train_btn">🚀 Train Chatbot</button>
-      <div id="loader" class="hidden"></div>
+      <button id="add_video" class="small-btn">+ Add More</button>
+      <button id="train_btn" class="neon-btn">Train Chatbot</button>
+      <div id="loader" class="loader hidden"></div>
       <p id="status"></p>
     </div>
+  </section>
 
-   <div id="chat-section" class="chat-container hidden">
-  <h2 class="chat-title">💬 Chat with Your AI Assistant</h2>
-  <div id="chat-box" class="chat-box">
-    <div class="message bot">
-      <span class="avatar">🤖</span>
-      <div class="bubble">Hello! I'm ready. Ask me anything related to your videos.</div>
+  <!-- 💬 Chat Page -->
+  <section id="chat-page" class="page hidden">
+    <div class="chat-container glass fade-in">
+      <h2 class="chat-title">💬 Chat with Your AI Assistant</h2>
+      <div id="chat-box" class="chat-box">
+        <div class="message bot">
+          <span class="avatar">🤖</span>
+          <div class="bubble">Hello! I'm ready to answer your questions about the videos you trained me on.</div>
+        </div>
+      </div>
+      <div class="input-container">
+        <input id="user-input" type="text" placeholder="Type your question..." autocomplete="off">
+        <button id="send-btn" class="send-btn">Send</button>
+      </div>
     </div>
-  </div>
-
-  <div class="input-container">
-    <input id="user-input" type="text" placeholder="Type your question..." autocomplete="off">
-    <button id="send-btn" class="send-btn">Send</button>
-  </div>
-</div>
+  </section>
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
